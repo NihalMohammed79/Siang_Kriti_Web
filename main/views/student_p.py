@@ -18,6 +18,9 @@ import datetime
 def student_dashboard(request):
     return render(request,'students/dashboard.html')
 
+def student_courses(request):
+    return render(request, 'students/courses.html')
+
 def student_book_upload(request):
     msg = ""
     if request.method == 'POST':
