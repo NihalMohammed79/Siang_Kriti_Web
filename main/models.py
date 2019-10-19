@@ -114,7 +114,7 @@ class Note(AbstractUser,AutoCreatedUpdatedMixin,SoftDeleteMixin):
 	is_approved = models.BooleanField(default=False)
 
 class MiscNote(AbstractUser,AutoCreatedUpdatedMixin,SoftDeleteMixin):
-	user = models.ForeignKey(User,on_delete=models.CASCADE , related_name='misc')
+	user = models.ForeignKey(User,on_delete=models.CASCADE , related_name='mis')
 	document = ContentTypeRestrictedFileField(upload_to='static/misc/', content_types=['application/docx', 'application/pdf', 'application/doc', 'application/odt', ],max_upload_size=5242880,blank=True, null=True)
 	desc = models.CharField(max_length=100, blank=False)
 	title = models.CharField(max_length=100, blank=False)
@@ -123,11 +123,11 @@ class MiscNote(AbstractUser,AutoCreatedUpdatedMixin,SoftDeleteMixin):
 class CourseVideo(models.Model):
 	user = models.ForeignKey(User,on_delete=models.CASCADE , related_name='video')
 	course = models.ForeignKey(Course,on_delete=models.CASCADE , related_name='vc')
-    name= models.CharField(max_length=500)
-    videofile= models.FileField(upload_to='static/videos/', null=True, verbose_name="")
+	name= models.CharField(max_length=500)
+	videofile= models.FileField(upload_to='static/videos/', null=True, verbose_name="")
 
-    def __str__(self):
-        return self.name + ": " + str(self.videofile)
+	def __str__(self):
+		return self.name + ": " + str(self.videofile)
 
 
 

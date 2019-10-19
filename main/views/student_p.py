@@ -16,25 +16,25 @@ from django.db import connection
 import datetime
 
 def student_dashboard(request):
-	return render(request,'students/dashboard.html')
+    return render(request,'students/dashboard.html')
 
 def student_book_upload(request):
-	msg = ""
+    msg = ""
     if request.method == 'POST':
         form = BooksUpload(request.POST, request.FILES)
         if form.is_valid():
-        	analysis = form.save(commit=False)
-        	analysis.user = request.user
-        	if request.user.is_student:
-        		analysis.is_approved = 0
-        	else:
-        		analysis.is_approved = 1
+            analysis = form.save(commit=False)
+            analysis.user = request.user
+            if request.user.is_student:
+                analysis.is_approved = 0
+            else:
+                analysis.is_approved = 1
             analysis.save()
             msg = "Book uploaded successfully"
             return render(request,"students/books_upload.html",{'msg':msg,'form': form})
         
         else:
-        	msg = "Error while uploading"
+            msg = "Error while uploading"
             return render(request,"students/books_upload.html",{'msg':msg , 'form': form})
 
 

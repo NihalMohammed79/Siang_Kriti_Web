@@ -15,6 +15,9 @@ from django.template.loader import render_to_string
 from django.db import connection
 import datetime
 
+def index(request):
+    return render(request,"layouts/index.html")
+
 def events_login(request):
     if request.user.is_authenticated:
         if request.user.is_student:
