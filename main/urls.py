@@ -9,5 +9,7 @@ from main.decorators import *
 urlpatterns = [
 		
 		path('student', views.student_dashboard, name='student_dashboard'),
+		path('redirect', views.redirect_ac, name='redirect'),
+		path('logout/', views.logout_view, name='logout'),
 
 ]
