@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse,FileResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
@@ -12,8 +11,13 @@ from main.decorators import *
 import json
 from django.conf import settings
 from django.template.loader import render_to_string
-from django.db import connection
-import datetime
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import authenticate, login
+
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordResetForm
+import requests
 
 def index(request):
     return render(request,"layouts/index.html")

@@ -97,23 +97,23 @@ class User(AbstractUser,AutoCreatedUpdatedMixin,SoftDeleteMixin):
 	# 	super(User, self).save(*args, **kwargs)
 
 	def __str__(self):
-		return self.first_name + " " + self.last_name
+		return self.username
 
-class Book(AbstractUser,AutoCreatedUpdatedMixin,SoftDeleteMixin):
+class Book(AutoCreatedUpdatedMixin,SoftDeleteMixin):
 	user = models.ForeignKey(User,on_delete=models.CASCADE , related_name='book')
 	document = ContentTypeRestrictedFileField(upload_to='static/books/', content_types=['application/docx', 'application/pdf', 'application/doc', 'application/odt', ],max_upload_size=5242880,blank=True, null=True)
 	author = models.CharField(max_length=100, blank=False)
 	title = models.CharField(max_length=100, blank=False)
 	is_approved = models.BooleanField(default=False)
 
-class Note(AbstractUser,AutoCreatedUpdatedMixin,SoftDeleteMixin):
+class Note(AutoCreatedUpdatedMixin,SoftDeleteMixin):
 	user = models.ForeignKey(User,on_delete=models.CASCADE , related_name='note')
 	document = ContentTypeRestrictedFileField(upload_to='static/notes/', content_types=['application/docx', 'application/pdf', 'application/doc', 'application/odt', ],max_upload_size=5242880,blank=True, null=True)
 	course = models.ForeignKey(Course,on_delete=models.CASCADE , related_name='nc')
 	title = models.CharField(max_length=100, blank=False)
 	is_approved = models.BooleanField(default=False)
 
-class MiscNote(AbstractUser,AutoCreatedUpdatedMixin,SoftDeleteMixin):
+class MiscNote(AutoCreatedUpdatedMixin,SoftDeleteMixin):
 	user = models.ForeignKey(User,on_delete=models.CASCADE , related_name='mis')
 	document = ContentTypeRestrictedFileField(upload_to='static/misc/', content_types=['application/docx', 'application/pdf', 'application/doc', 'application/odt', ],max_upload_size=5242880,blank=True, null=True)
 	desc = models.CharField(max_length=100, blank=False)

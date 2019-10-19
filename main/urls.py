@@ -10,6 +10,8 @@ urlpatterns = [
 		
 		path('', views.index, name='index'),
 		path('student', views.student_dashboard, name='student_dashboard'),
+		path('student/book/upload', views.student_book_upload, name='student_book_upload'),
+		path('login', views.events_login, name='events_login'),
 		path('redirect', views.redirect_ac, name='redirect'),
 		path('logout/', views.logout_view, name='logout'),
 
