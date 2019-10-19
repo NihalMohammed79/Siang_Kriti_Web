@@ -14,5 +14,6 @@ urlpatterns = [
 		path('login', views.events_login, name='events_login'),
 		path('redirect', views.redirect_ac, name='redirect'),
 		path('logout/', views.logout_view, name='logout'),
+		path('student/courses', views.student_courses, name='student_courses'),
 
 ]
