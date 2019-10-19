@@ -1,5 +1,5 @@
 {% extends 'layouts/master.html' %}
-{%block title%}Coreteam | Branding Mail{%endblock%}
+{%block title%}Misc | Upload{%endblock%}
 {%load static%}
 
 {%block head%}
@@ -39,7 +39,7 @@
             <div class="col-sm-12">
                 <div class="page-header float-left">
                     <div class="page-title">
-                        <h1 ><b> Upload Books </b></h1>
+                        <h1 ><b> Upload Generic Books / Articles / Published Papers </b></h1>
                     </div>
                 </div>
             </div>
@@ -55,12 +55,12 @@
                           <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="id_document" class=" form-control-label">Book:</label></div>
+                            <div class="col col-md-3"><label for="id_document" class=" form-control-label">Document:</label></div>
                             <div class="col-12 col-md-9"><input type="file" id="id_document" name="document" class="form-control" required><small class="help-block form-text">(PDF format)</small></div>
                         </div>
                         <div class="row form-group">
-                            <div class="col col-md-3"><label for="id_author" class=" form-control-label">Author :</label></div>
-                            <div class="col-12 col-md-9"><input type="text" id="id_author" name="author" class="form-control" ></div>
+                            <div class="col col-md-3"><label for="id_desc" class=" form-control-label">Description :</label></div>
+                            <div class="col-12 col-md-9"><textarea id="id_desc" name="desc" class="form-control" ></textarea></div>
                         </div>
 
                         <div class="row form-group">
@@ -107,7 +107,7 @@
 {%block script%}
 
 <script type="text/javascript">
-    $("#book").addClass('active');
+    $("#misc").addClass('active');
 </script>
 
 {%endblock%}

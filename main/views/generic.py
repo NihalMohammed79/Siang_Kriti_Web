@@ -51,3 +51,12 @@ def redirect_ac(request):
     else:
         if request.user.is_student:
             return redirect("/student")
+
+def get_courses(request):
+    if request.method=="POST":
+        dept_id = request.POST.get('department')
+        dept = Department.objects.filter(id=int(dept_id)).first()
+        courses = Course.objects.filter(department=dept).order_by('name')
+        data = [course.as_dict() for course in courses]
+        return JsonResponse(data,safe=False)
+
