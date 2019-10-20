@@ -110,7 +110,7 @@
      $('#Q' + btv.toString()).addClass('loader');
      $.ajax({
       type: "POST",
-      url: "{%url 'book_approval'%}",
+      url: "{%url 'note_approval'%}",
       data: {'tr_id': btv, 'extra_id': token,'bn':bn,'csrfmiddlewaretoken':'{{ csrf_token }}'},
       success: function(result){
         $('#Q' + btv.toString()).removeClass('loader');

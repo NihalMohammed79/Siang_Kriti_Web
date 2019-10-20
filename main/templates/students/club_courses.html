@@ -64,6 +64,7 @@
                                 {%endfor%}
 
                                 {% for note in notes %}
+                                {%if note.is_approved == 1%}
                                 {%if note.course.department.id <= 5%}
                                 <tr>
                                     <td>  <span class="name">{{note.user.username}} </span> </td>
@@ -73,6 +74,7 @@
                                     <td>  <span class="name"></span><a href="/{{note.document}}" target="_blank" class="btn btn-success">Preview</a> </td>
                                     <td>  <span class="name"><a href="/{{note.document}}">Get Offline</a> </span> </td>
                                 </tr>
+                                {%endif%}
                                 {%endif%}
                                 {%endfor%}
                             </tbody>
