@@ -52,12 +52,22 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-4"></div>
                     <div class="col-xs-12 col-sm-12 col-md-4">
+                        {% if msg == "Book uploaded successfully" %}
+                        <div class="alert alert-success" role="alert">
+                          Book uploaded successfully
+                        </div>
+                        {% endif %}
+                        {% if msg == "Error while uploading" %}
+                        <div class="alert alert-danger" role="alert">
+                          Error while uploading! Try again.
+                        </div>
+                        {% endif %}
                           <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                        <div class="row form-group">
-                            <div class="col col-md-3"><label for="id_document" class=" form-control-label">Book:</label></div>
-                            <div class="col-12 col-md-9"><input type="file" id="id_document" name="document" class="form-control" required><small class="help-block form-text">(PDF format)</small></div>
-                        </div>
+                              <div class="form-group">
+                                <div class="col col-md-3"><label for="id_document">Book:</label></div>
+                                <div class="col-12 col-md-9"><input type="file" name="document" class="form-control-file" id="id_document"><small class="help-block form-text">(PDF format)</small></div>
+                              </div>
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="id_author" class=" form-control-label">Author :</label></div>
                             <div class="col-12 col-md-9"><input type="text" id="id_author" name="author" class="form-control" ></div>
