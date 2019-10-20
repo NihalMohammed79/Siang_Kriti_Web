@@ -17,7 +17,10 @@ import datetime
 
 @student
 def student_dashboard(request):
-    return render(request,'students/dashboard.html')
+    bcount = Book.objects.filter(user=request.user,is_approved=1).count()
+    ncount = Note.objects.filter(user=request.user,is_approved=1).count()
+    mcount = MiscNote.objects.filter(user=request.user,is_approved=1).count()
+    return render(request,'students/dashboard.html',{'bcount':bcount,'ncount':ncount,'mcount':mcount})
 
 @login_required
 def student_courses(request):
