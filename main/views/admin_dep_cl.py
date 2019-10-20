@@ -82,3 +82,62 @@ def note_approval(request):
     else:
         note = Note.objects.all()
         return render(request,'departments/note_approval.html',{'notes':note})
+
+def misc_approval(request):
+
+    if request.method == "POST":
+        iden = int(request.POST.get('extra_id'))
+        ibook = int(request.POST.get('tr_id'))
+        ibn = request.POST.get('bn')
+        
+        if ibn == "misc":
+            misc = MiscNote.objects.filter(id=ibook).first()
+            if iden == 1:
+                misc.is_approved = 1
+            else:
+                misc.is_approved = -1
+            misc.save()
+        return HttpResponse(iden)
+
+    else:
+        misc = MiscNote.objects.all()
+        return render(request,'admin/misc_approval.html',{'miscs':misc})
+
+def add_dept(request):
+    msg = ""
+    if request.method == 'POST':
+        form = AddDept(request.POST, request.FILES)
+        if form.is_valid():
+            analysis = form.save(commit=False)
+            analysis.save()
+            msg = "Added successfully"
+            return render(request,"admin/add_dept.html",{'msg':msg,'form': form})
+        
+        else:
+            msg = "Error while adding"
+            return render(request,"admin/add_dept.html",{'msg':msg , 'form': form})
+
+
+    else:
+        form = AddDept()
+    return render(request, 'admin/add_dept.html', { 'form': form , 'msg':msg})
+
+def add_course(request):
+    msg = ""
+    if request.method == 'POST':
+        form = AddCourse(request.POST, request.FILES)
+        if form.is_valid():
+            analysis = form.save(commit=False)
+            analysis.department = request.user.department
+            analysis.save()
+            msg = "Added successfully"
+            return render(request,"departments/add_course.html",{'msg':msg,'form': form})
+        
+        else:
+            msg = "Error while adding"
+            return render(request,"departments/add_course.html",{'msg':msg , 'form': form})
+
+
+    else:
+        form = AddCourse()
+    return render(request, 'departments/add_course.html', { 'form': form , 'msg':msg})

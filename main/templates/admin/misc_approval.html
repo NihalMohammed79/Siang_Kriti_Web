@@ -1,0 +1,130 @@
+{% extends 'layouts/master.html' %}
+{%block title%}Books | Approval{%endblock%}
+{%load static%}
+{%load tags%}
+{%block head%}
+<style type="text/css">
+  .query{
+    color:black;
+  }
+  .loader {
+    border: 8px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 8px solid #00b7ff;
+    width: 50px;
+    height: 50px;
+    margin:auto;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+{%endblock%}
+{% block content %}
+
+
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+    <div class="row m-0">
+      <div class="col-sm-12">
+        <div class="page-header float-left">
+          <div class="page-title">
+            <h1 ><b>New Request for Misc</b></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="animated fadeIn">
+    <div class="row">
+
+      {%for misc in miscs%}
+      {%if  misc.is_approved == 0%}
+      <div class="col-md-4" id="C{{misc.id}}">
+        <div class="feed-box">
+          <section class="card">
+            <div class="card-header text-center ">
+              <h3>{{misc.user.username}}</h3>
+            </div>
+            <div class="card-body">
+              <div class="card-content" id="P{{misc.id}}">    
+                
+                  <div> <p><span class="query"> Student Department :</span> <span class="answer">{{misc.user.department.name}}</span></p> </div>
+
+
+                  <div> <p><span class="query">Title :</span> <span class="answer">{{misc.title}}</span></p> </div>
+                  <div> <p><span class="query"> description :</span> <span class="answer">{{misc.desc}}</span></p> </div>
+
+                  <div> <p><span class="query"> Preview :</span> <span class="answer"><a href="/{{misc.document}}" target="_blank" class="btn btn-success">Preview</a></span></p> </div>
+              </div>
+              <div class="text-center">
+              <div id="Q{{misc.id}}"></div>
+              <button class="btn accept btn-success" type="button" data-b= "misc" data-id= "{{misc.id}}" data-extra="1" id="{{misc.id}}">Accept</button>
+              <button class="btn decline btn-danger" type="button" data-b= "misc" data-id= "{{misc.id}}" data-extra="0" id="{{misc.id}}">Decline</button> 
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </div>
+      {%endif%}
+      {%endfor%}
+    </div><!-- .row -->
+  </div><!-- .animated -->
+</div><!-- .content -->
+
+{% endblock %}
+
+{%block script%}
+<script type="text/javascript">
+
+  $("#misc_approval").addClass('active');
+
+
+  $(document).ready(function(){
+    $("button").on("click", function(evt) {
+     var btv =  $(this).data("id");
+     var token = $(this).data("extra");
+     var bn = $(this).data("b");
+     $('#P' + btv.toString()).hide();
+     $('#Q' + btv.toString()).addClass('loader');
+     $.ajax({
+      type: "POST",
+      url: "{%url 'misc_approval'%}",
+      data: {'tr_id': btv, 'extra_id': token,'bn':bn,'csrfmiddlewaretoken':'{{ csrf_token }}'},
+      success: function(result){
+        $('#Q' + btv.toString()).removeClass('loader');
+        $('#Q' + btv.toString()).fadeIn("slow").html('<h1 style="color:#00b7ff"><i class="fa fa-check-circle"></i></h1><h4>Success!</h4>');
+        window.setTimeout(function(){
+          $('#C' + btv.toString()).hide('slow').remove();
+        },1000);
+      },
+      error: function(result){
+        $('#Q' + btv.toString()).html('<h1 style="color:red"><i class="fa fa-ban"></i></h1><h4>Erro Occured!</h4>');
+        window.setTimeout(function(){
+          $("#Q"+btv.toString()).fadeOut("slow").html("");                
+          $('#P' + btv.toString()).fadeIn("slow").show();
+          $("#"+btv.toString()).prop("disabled",false);
+        },1000);
+      }
+    });
+   });
+  });
+
+
+
+</script>
+{%endblock%}

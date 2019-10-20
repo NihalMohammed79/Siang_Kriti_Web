@@ -23,3 +23,13 @@ class VideoUpload(forms.ModelForm):
     class Meta:
         model = CourseVideo
         fields = ('course','title','document')
+
+class AddDept(forms.ModelForm):
+    class Meta:
+        model = Department
+        fields = ('name',)
+
+class AddCourse(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ('name',)

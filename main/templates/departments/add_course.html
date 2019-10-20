@@ -1,0 +1,115 @@
+{% extends 'layouts/master.html' %}
+{%block title%}Student | Dashboard{%endblock%}
+{%load static%}
+
+{%block head%}
+<style type="text/css">
+    .query{
+        color:black;
+    }
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 8px solid #00b7ff;
+      width: 50px;
+      height: 50px;
+      margin:auto;
+      -webkit-animation: spin 2s linear infinite; /* Safari */
+      animation: spin 2s linear infinite;
+  }
+
+  /* Safari */
+  @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+  .jumbotron{
+    background: white;
+  }
+</style>
+{%endblock%}
+{% block content %}
+
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-12">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1 ><b> Add New Course </b></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="animated fadeIn">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        {% if msg == "Added successfully" %}
+                        <div class="alert alert-success" role="alert">
+                          Added successfully
+                        </div>
+                        {% endif %}
+                        {% if msg == "Error while uploading" %}
+                        <div class="alert alert-danger" role="alert">
+                          Error while uploading! Try again.
+                        </div>
+                        {% endif %}
+                          <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                        <div class="form-group">
+                            <div class="col col-md-3"><label for="id_name">Course Name:</label></div>
+                            <div class="col-12 col-md-9"><input type="text" name="name" class="form-control-file" id="id_name"></div>
+                        </div>
+
+                    <div class="row">
+                    <div class="col-xs-3 col-sm-3"></div>
+                    <div class="col-xs-6 col-sm-6 text-center">
+                        <button type="submit" name="submit" class="btn btn-success">Add</button>
+                    </div>
+                    <div class="col-xs-3 col-sm-3"></div>
+                    </div>
+                          </form>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4"></div>
+
+                    <div class="col-md-6 col-xs-12">
+
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        
+                    </div>
+
+                    <div class="col-md-6 col-xs-12">
+                        
+                    </div>
+
+
+                </div>
+            
+    
+    </div><!-- .animated -->
+</div>
+
+{% endblock %}
+
+{%block script%}
+
+<script type="text/javascript">
+    $("#add_course").addClass('active');
+</script>
+
+{%endblock%}
+
