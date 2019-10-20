@@ -141,3 +141,7 @@ def add_course(request):
     else:
         form = AddCourse()
     return render(request, 'departments/add_course.html', { 'form': form , 'msg':msg})
+
+def admin_dashboard(request):
+    return render(request,'admin/dashboard.html')
+
