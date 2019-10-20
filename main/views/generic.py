@@ -53,9 +53,9 @@ def redirect_ac(request):
             return redirect("/student")
         if request.user.is_department:
             return redirect("/department")
-        if request.user.is_department:
+        if request.user.is_club:
             return redirect("/club")
-        if request.user.is_department:
+        if request.user.is_admin:
             return redirect("/admind")
 
 def get_courses(request):
