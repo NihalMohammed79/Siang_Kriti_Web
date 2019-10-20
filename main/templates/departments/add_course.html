@@ -1,5 +1,5 @@
 {% extends 'layouts/master.html' %}
-{%block title%}Student | Dashboard{%endblock%}
+{%block title%}Add Course | Department{%endblock%}
 {%load static%}
 
 {%block head%}
@@ -49,8 +49,9 @@
     </div>
 </div>
 
-<div class="content">
-    <div class="animated fadeIn">
+<div class="content" style="padding-top: 0;">
+    <div class="animated fadeIn" style="height:60vh; background-image: url(/static/images/book_background.jpg);
+  background-blend-mode: screen; background-repeat: no-repeat; width: 100%; background-size: cover; opacity:0.7;">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-4"></div>
                     <div class="col-xs-12 col-sm-12 col-md-4">
@@ -66,11 +67,10 @@
                         {% endif %}
                           <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                        <div class="form-group">
-                            <div class="col col-md-3"><label for="id_name">Course Name:</label></div>
-                            <div class="col-12 col-md-9"><input type="text" name="name" class="form-control-file" id="id_name"></div>
-                        </div>
-
+                               <div class="form-group mt-4">
+                                <label class="h4 text-primary" for="id_name"><b>Add Course :</b></label>
+                                <input type="text" class="form-control" id="id_name" name="name" placeholder="Course Name">
+                              </div>
                     <div class="row">
                     <div class="col-xs-3 col-sm-3"></div>
                     <div class="col-xs-6 col-sm-6 text-center">
