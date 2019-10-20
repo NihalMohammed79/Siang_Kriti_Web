@@ -88,6 +88,7 @@ class User(AbstractUser,AutoCreatedUpdatedMixin,SoftDeleteMixin):
 	is_club = models.BooleanField(default=False)
 	department = models.ForeignKey(Department,on_delete=models.CASCADE , related_name='dept',blank=True, null=True)
 	contact = models.CharField(max_length=20, default=False)
+	roll = models.CharField(max_length=20, default=False)
 	contri = models.IntegerField(default=0)
 	
 
@@ -104,30 +105,30 @@ class Book(AutoCreatedUpdatedMixin,SoftDeleteMixin):
 	document = ContentTypeRestrictedFileField(upload_to='static/books/', content_types=['application/docx', 'application/pdf', 'application/doc', 'application/odt', ],max_upload_size=5242880,blank=True, null=True)
 	author = models.CharField(max_length=100, blank=False)
 	title = models.CharField(max_length=100, blank=False)
-	is_approved = models.BooleanField(default=False)
+	is_approved = models.IntegerField(default=0)
 
 class Note(AutoCreatedUpdatedMixin,SoftDeleteMixin):
 	user = models.ForeignKey(User,on_delete=models.CASCADE , related_name='note')
 	document = ContentTypeRestrictedFileField(upload_to='static/notes/', content_types=['application/docx', 'application/pdf', 'application/doc', 'application/odt', ],max_upload_size=5242880,blank=True, null=True)
 	course = models.ForeignKey(Course,on_delete=models.CASCADE , related_name='nc')
 	title = models.CharField(max_length=100, blank=False)
-	is_approved = models.BooleanField(default=False)
+	is_approved = models.IntegerField(default=0)
 
 class MiscNote(AutoCreatedUpdatedMixin,SoftDeleteMixin):
 	user = models.ForeignKey(User,on_delete=models.CASCADE , related_name='mis')
 	document = ContentTypeRestrictedFileField(upload_to='static/misc/', content_types=['application/docx', 'application/pdf', 'application/doc', 'application/odt', ],max_upload_size=5242880,blank=True, null=True)
 	desc = models.CharField(max_length=100, blank=False)
 	title = models.CharField(max_length=100, blank=False)
-	is_approved = models.BooleanField(default=False)
+	is_approved = models.IntegerField(default=0)
 
 class CourseVideo(models.Model):
 	user = models.ForeignKey(User,on_delete=models.CASCADE , related_name='video')
 	course = models.ForeignKey(Course,on_delete=models.CASCADE , related_name='vc')
-	name= models.CharField(max_length=500)
-	videofile= models.FileField(upload_to='static/videos/', null=True, verbose_name="")
+	title= models.CharField(max_length=500)
+	document= models.FileField(upload_to='static/videos/', null=True, verbose_name="")
 
 	def __str__(self):
-		return self.name + ": " + str(self.videofile)
+		return self.title + ": " + str(self.document)
 
 
 

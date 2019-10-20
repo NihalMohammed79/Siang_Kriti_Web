@@ -48,6 +48,12 @@
                     {%if request.user.is_student%}
                         {%include 'students/sidebar.html'%}
                     {%endif%}
+                    {%if request.user.is_department%}
+                        {%include 'departments/sidebar.html'%}
+                    {%endif%}
+                    {%if request.user.is_admin%}
+                        {%include 'admin/sidebar.html'%}
+                    {%endif%}
 
                 </ul>
             </div><!-- /.navbar-collapse -->

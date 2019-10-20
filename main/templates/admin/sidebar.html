@@ -1,8 +1,8 @@
-<li class="menu-title"> STUDENTS </li><!-- /.menu-title -->
+<li class="menu-title"> ADMIN </li><!-- /.menu-title -->
 <li class="menu-title" style="line-height:10px; font-weight:400;">{{request.user.first_name}} {{request.user.last_name}}</li><!-- /.menu-title -->
 <br>
 <li id="branding-expand">
-    <a href="{%url 'student_dashboard'%}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+    <a href="{%url 'department_dashboard'%}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
 </li>
 		
 
@@ -17,3 +17,9 @@
 
 <li id="dept_co"><a href="{%url 'student_courses'%}"><i class="menu-icon fa fa-book"></i>Departmental</a></li>
 <li id="club_co"><a href="{%url 'student_club_courses'%}"><i class="menu-icon fa fa-book"></i>Club Materials</a></li>
+
+<li class="menu-title"> Extra Feature </li>
+<li id="video_co"><a href="{%url 'video_upload'%}"><i class="menu-icon fa fa-book"></i>Course Video</a></li>
+
+<li class="menu-title"> Approvals </li>
+<li id="book_approva"><a href="{%url 'book_approval'%}"><i class="menu-icon fa fa-book"></i>Books Approval</a></li>

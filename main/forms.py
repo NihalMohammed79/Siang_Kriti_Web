@@ -18,3 +18,8 @@ class MiscUpload(forms.ModelForm):
     class Meta:
         model = MiscNote
         fields = ('desc','title','document')
+
+class VideoUpload(forms.ModelForm):
+    class Meta:
+        model = CourseVideo
+        fields = ('course','title','document')

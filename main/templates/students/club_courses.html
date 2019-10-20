@@ -32,7 +32,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong class="card-title">Departmental Courses</strong>
+                        <strong class="card-title">Club Courses/Notes</strong>
                     </div>
                     <div class="table-stats ov-h"  style="padding:20px;">
                         <!-- <table class="table"> -->
@@ -40,7 +40,7 @@
                             <thead>
                                 <tr>
                                     <th>Added by</th>
-                                    <th>Course</th>
+                                    <th>Project / Topic</th>
                                     <th>Type</th>
                                     <th>Title</th>
                                     <th>Content</th>
@@ -49,7 +49,7 @@
                             </thead>
                             <tbody>
                                 {% for video in videos %}
-                                {%if video.course.department == request.user.department%}
+                                {%if video.course.department.id <= 5%}
                                 <tr>
                                     <td>  <span class="name">{{video.user.username}} </span> </td>
                                     <td>  <span class="name">{{video.course.name}}</span> </td>
@@ -64,7 +64,7 @@
                                 {%endfor%}
 
                                 {% for note in notes %}
-                                {%if note.course.department == request.user.department%}
+                                {%if note.course.department.id <= 5%}
                                 <tr>
                                     <td>  <span class="name">{{note.user.username}} </span> </td>
                                     <td>  <span class="name">{{note.course.name}}</span> </td>
@@ -117,7 +117,7 @@
 
         <script type="text/javascript">
 
-            $("#dept_co").addClass('active');
+            $("#club_co").addClass('active');
             $(document).ready( function () {
                 $('#bootstrap-data-table').DataTable({
                     //scrollX: true,

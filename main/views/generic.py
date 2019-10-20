@@ -60,3 +60,26 @@ def get_courses(request):
         data = [course.as_dict() for course in courses]
         return JsonResponse(data,safe=False)
 
+def misc_upload(request):
+    msg = ""
+    if request.method == 'POST':
+        form = MiscUpload(request.POST, request.FILES)
+        if form.is_valid():
+            analysis = form.save(commit=False)
+            analysis.user = request.user
+            if request.user.is_student:
+                analysis.is_approved = 0
+            else:
+                analysis.is_approved = 1
+            analysis.save()
+            msg = "Uploaded successfully"
+            return render(request,"general/misc_upload.html",{'msg':msg,'form': form})
+        
+        else:
+            msg = "Error while uploading"
+            return render(request,"general/misc_upload.html",{'msg':msg , 'form': form})
+
+
+    else:
+        form = MiscUpload()
+    return render(request, 'general/misc_upload.html', { 'form': form , 'msg':msg})

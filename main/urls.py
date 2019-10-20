@@ -12,11 +12,16 @@ urlpatterns = [
 		path('student', views.student_dashboard, name='student_dashboard'),
 		path('student/book/upload', views.student_book_upload, name='student_book_upload'),
 		path('student/note/upload', views.student_note_upload, name='student_note_upload'),
+		path('student/courses', views.student_courses, name='student_courses'),
+		path('student/club/courses', views.student_club_courses, name='student_club_courses'),
+		path('department', views.department_dashboard, name='department_dashboard'),
+		path('book/approval', views.book_approval, name='book_approval'),
+		path('note/approval', views.note_approval, name='note_approval'),
 		path('misc/upload', views.misc_upload, name='misc_upload'),
+		path('video/upload', views.video_upload, name='video_upload'),
 		path('api/courses',views.get_courses, name='api_courses'),
 		path('login', views.events_login, name='events_login'),
 		path('redirect', views.redirect_ac, name='redirect'),
 		path('logout/', views.logout_view, name='logout'),
-		path('student/courses', views.student_courses, name='student_courses'),
 
 ]
