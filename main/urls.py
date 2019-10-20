@@ -26,7 +26,7 @@ urlpatterns = [
 		path('video/upload', views.video_upload, name='video_upload'),
 		path('api/courses',views.get_courses, name='api_courses'),
 		path('login', views.events_login, name='events_login'),
-		path('redirect', views.redirect_ac, name='redirect'),
+		path('redirect', views.redirect_ac, name='redirect_ac'),
 		path('logout/', views.logout_view, name='logout'),
 
 ]

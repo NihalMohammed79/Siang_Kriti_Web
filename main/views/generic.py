@@ -26,6 +26,12 @@ def events_login(request):
     if request.user.is_authenticated:
         if request.user.is_student:
             return redirect("/student")
+        elif request.user.is_club:
+            return redirect("/club")
+        elif request.user.is_department:
+            return redirect("/department")
+        elif request.user.is_admin:
+            return redirect("/admind")
     if request.method=="POST":
         username = User.objects.filter(email=request.POST['email']).first()
         if username is None:
@@ -51,12 +57,14 @@ def redirect_ac(request):
     else:
         if request.user.is_student:
             return redirect("/student")
-        if request.user.is_department:
+        elif request.user.is_department:
             return redirect("/department")
-        if request.user.is_club:
+        elif request.user.is_club:
             return redirect("/club")
-        if request.user.is_admin:
+        elif request.user.is_admin:
             return redirect("/admind")
+        else:
+            return redirect("/")
 
 def get_courses(request):
     if request.method=="POST":

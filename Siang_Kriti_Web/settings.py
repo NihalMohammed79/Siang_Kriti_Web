@@ -133,7 +133,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'redirect'
+LOGIN_REDIRECT_URL = 'redirect_ac'
 LOGOUT_REDIRECT_URL = 'index'
 
 AUTH_USER_MODEL = "main.User" 
