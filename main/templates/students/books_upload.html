@@ -1,5 +1,5 @@
 {% extends 'layouts/master.html' %}
-{%block title%}Upload Books{%endblock%}
+{%block title%}Books | Upload{%endblock%}
 {%load static%}
 
 {%block head%}
@@ -54,7 +54,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-4">
                         {% if msg == "Book uploaded successfully" %}
                         <div class="alert alert-success" role="alert">
-                          Book uploaded successfully
+                          Book sent for Approval
                         </div>
                         {% endif %}
                         {% if msg == "Error while uploading" %}
@@ -103,11 +103,7 @@
                     <div class="col-md-6 col-xs-12">
                         
                     </div>
-
-
                 </div>
-            
-    
     </div><!-- .animated -->
 </div>
 

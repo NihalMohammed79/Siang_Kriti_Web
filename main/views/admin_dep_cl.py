@@ -82,3 +82,6 @@ def note_approval(request):
     else:
         note = Note.objects.all()
         return render(request,'departments/note_approval.html',{'notes':note})
+
+def admin_dashboard(request):
+    return render(request,'admin/dashboard.html')

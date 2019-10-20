@@ -1,0 +1,107 @@
+{% extends 'layouts/master.html' %}
+{%block title%}Admin Dashboard{%endblock%}
+{%load static%}
+
+{%block head%}
+<style type="text/css">
+    .query{
+        color:black;
+    }
+    .loader {
+      border: 8px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 8px solid #00b7ff;
+      width: 50px;
+      height: 50px;
+      margin:auto;
+      -webkit-animation: spin 2s linear infinite; /* Safari */
+      animation: spin 2s linear infinite;
+  }
+
+  /* Safari */
+  @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+  }
+
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+  .jumbotron{
+    background: white;
+  }
+</style>
+{%endblock%}
+{% block content %}
+
+<div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" style="color: black;"><h2>Admin Dashboard</h2></li>
+      </ol>
+    </nav>
+<div class="jumbotron py-3 mb-0">
+    <div class="row py-5">
+        <div class="col-sm-8">
+            <h1 class="display-4 mb-3">{{request.user.first_name}} {{request.user.last_name}}</h1>
+                <p class="lead"><b>Total Videos</b>:&nbsp;&nbsp;&nbsp;&nbsp;23</p>
+                <p class="lead"><b>Total Books</b>:&nbsp;&nbsp;&nbsp;&nbsp;246</p>
+              <hr class="my-4">
+            <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        </div>
+        <div class="col-sm-4 d-flex justify-content-end">
+            <img style="width: 175px; height: 200px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT0PUMykF3TFY2jTMKZP_Xyvrj-X3K8SYAjOM4D4VSIMUjOtLKS" alt="">
+        </div>
+    </div>
+</div>
+    </div>
+<br>
+<div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active" style="color: black;"><h2>Your Most Recent Uploads</h2></li>
+      </ol>
+    </nav>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="https://i.imgur.com/ue0AB6J.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Card Image Title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="https://i.imgur.com/hrS2McC.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Card Image Title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="https://i.imgur.com/MUBS4Gh.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Card Image Title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{%block script%}
+
+<script type="text/javascript">
+    $("#branding-expand").addClass('active');
+</script>
+
+{%endblock%}

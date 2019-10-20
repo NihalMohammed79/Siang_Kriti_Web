@@ -1,5 +1,5 @@
 {% extends 'layouts/master.html' %}
-{%block title%}Department | Dashboard{%endblock%}
+{%block title%}Dashboard{%endblock%}
 {%load static%}
 
 {%block head%}
@@ -44,9 +44,9 @@
 <div class="jumbotron py-3 mb-0">
     <div class="row py-5">
         <div class="col-sm-8">
-            <h1 class="display-4 mb-3">{{request.user.first_name}} {{request.user.last_name}}</h1>
-                <p class="lead"><b>Roll Number</b>:&nbsp;&nbsp;&nbsp;&nbsp;{{request.user.roll}}</p> 
-              <p class="lead"><b>Department</b>:&nbsp;&nbsp;&nbsp;&nbsp; {{request.user.department.name}}</p>
+            <h1 class="display-4 mb-3">{{request.user.department.name}}</h1>
+                <p class="lead"><b>Total Videos</b>:&nbsp;&nbsp;&nbsp;&nbsp;23</p>
+                <p class="lead"><b>Total Books</b>:&nbsp;&nbsp;&nbsp;&nbsp;246</p>
               <hr class="my-4">
             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
         </div>
@@ -60,7 +60,7 @@
 <div class="container">
     <nav>
       <ol class="breadcrumb">
-        <li class="breadcrumb-item active" style="color: black;"><h2>Continue Where You Left Off</h2></li>
+        <li class="breadcrumb-item active" style="color: black;"><h2>Your Most Recent Uploads</h2></li>
       </ol>
     </nav>
     <div class="row">
