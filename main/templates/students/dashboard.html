@@ -62,11 +62,34 @@
         <li class="breadcrumb-item active" style="color: black;"><h2>Your Contribution To EducateMe</h2></li>
       </ol>
     </nav>
-    <div class="pl-2" style="background-image: url(static/images/thank_you.jfif); background-color: #dedede; height: 30vh;
-  background-blend-mode: screen; background-position:center; background-repeat: no-repeat; background-size:cover;">
-        <h3 class="text-danger h3">Books Submitted:&nbsp;&nbsp;&nbsp;&nbsp;{{bcount}} </h3>
-        <h3 class="text-danger h3">Notes Submitted:&nbsp;&nbsp;&nbsp;&nbsp;{{ncount}} </h3>
-        <h3 class="text-danger h3">Misc Submitted:&nbsp;&nbsp;&nbsp;&nbsp;{{mcount}} </h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h3 class="card-title">Books Submitted</h3>
+                <h6 class="card-subtitle mb-2 text-muted">Course Books</h6>
+                <h3 class="card-title">{{bcount}}</h3>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h3 class="card-title">Notes Submitted</h3>
+                <h6 class="card-subtitle mb-2 text-muted">Department Notes and Study Material</h6>
+                <h3 class="card-title">{{ncount}}</h3>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h3 class="card-title">Misc Submitted</h3>
+                <h6 class="card-subtitle mb-2 text-muted">Articles, Research Papers and Novels</h6>
+                <h3 class="card-title">{{mcount}}</h3>
+              </div>
+            </div>
+        </div>
     </div>
 </div>
 
