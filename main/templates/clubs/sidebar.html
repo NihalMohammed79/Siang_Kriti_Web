@@ -1,0 +1,26 @@
+<li class="menu-title"> CLUBS </li><!-- /.menu-title -->
+<li class="menu-title" style="line-height:10px; font-weight:400;">{{request.user.first_name}} {{request.user.last_name}}</li><!-- /.menu-title -->
+<br>
+<li id="branding-expand">
+    <a href="{%url 'club_dashboard'%}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+</li>
+		
+
+<li id="all_adding" class="menu-item-has-children dropdown">
+	<a href="#" id="all_adding-expand" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Contribution</a>
+	<ul class="sub-menu children dropdown-menu">
+		<li id="book"><a href="{%url 'student_book_upload'%}"><i class="menu-icon fa fa-desktop"></i>Add Books</a></li>
+		<li id="note"><a href="{%url 'student_note_upload'%}"><i class="menu-icon fa fa-desktop"></i>Add Notes</a></li>
+		<li id="misc"><a href="{%url 'misc_upload'%}"><i class="menu-icon fa fa-desktop"></i>Add Misc</a></li>
+	</ul>
+</li>
+
+<li id="club_co"><a href="{%url 'student_club_courses'%}"><i class="menu-icon fa fa-book"></i>Club Materials</a></li>
+
+<li class="menu-title"> Extra Feature </li>
+<li id="video_co"><a href="{%url 'video_upload'%}"><i class="menu-icon fa fa-book"></i>Project Video</a></li>
+<li id="add_course"><a href="{%url 'add_course'%}"><i class="menu-icon fa fa-book"></i>Add Projects / Task</a></li>
+
+
+<li class="menu-title"> Approvals </li>
+<li id="note_approval"><a href="{%url 'note_approval'%}"><i class="menu-icon fa fa-book"></i>Notes Approval</a></li>
