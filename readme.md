@@ -1,6 +1,6 @@
 EducateMe
 
-This website uses Django an back-end Framework.
+This website uses Django as back-end Framework.
 
 Features: 
 1) Only the Community of IITG can login to this Website.
