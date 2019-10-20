@@ -15,11 +15,33 @@ from django.template.loader import render_to_string
 from django.db import connection
 import datetime
 
-@login_required
+@department
 def department_dashboard(request):
-    return render(request,'departments/dashboard.html')
+    courses = Course.objects.filter(department=request.user.department).all()
+    vcount = 0
+    ncount = 0 
+    for course in courses:
+        v = CourseVideo.objects.filter(course=course).count()
+        n = Note.objects.filter(course=course,is_approved=1).count()
+        vcount += int(v)
+        ncount += int(n)
+    bcount = Book.objects.filter(is_approved=1).count()
+    return render(request,'departments/dashboard.html',{'vcount':vcount , 'ncount':ncount ,'bcount':bcount , 'courses':courses})
 
+@club
+def club_dashboard(request):
+    courses = Course.objects.filter(department=request.user.department).all()
+    vcount = 0
+    ncount = 0 
+    for course in courses:
+        v = CourseVideo.objects.filter(course=course).count()
+        n = Note.objects.filter(course=course,is_approved=1).count()
+        vcount += int(v)
+        ncount += int(n)
+    bcount = Book.objects.filter(is_approved=1).count()
+    return render(request,'clubs/dashboard.html',{'vcount':vcount , 'ncount':ncount ,'bcount':bcount , 'courses':courses})
 
+@no_student
 def video_upload(request):
     msg = ""
     departments = Department.objects.all()
@@ -41,19 +63,21 @@ def video_upload(request):
         form = VideoUpload()
     return render(request, 'general/video_upload.html', { 'form': form , 'msg':msg , 'departments':departments})
 
+@admin
 def book_approval(request):
 
     if request.method == "POST":
         iden = int(request.POST.get('extra_id'))
         ibook = int(request.POST.get('tr_id'))
         ibn = request.POST.get('bn')
-        print(iden)
-        print(ibook)
-        print(ibn)
+        # print(iden)
+        # print(ibook)
+        # print(ibn)
         if ibn == "book":
             book = Book.objects.filter(id=ibook).first()
             if iden == 1:
                 book.is_approved = 1
+                book.user.contri += 1
             else:
                 book.is_approved = -1
             book.save()
@@ -63,6 +87,7 @@ def book_approval(request):
         book = Book.objects.all()
         return render(request,'departments/book_approval.html',{'books':book})
 
+@no_student
 def note_approval(request):
 
     if request.method == "POST":
@@ -74,6 +99,7 @@ def note_approval(request):
             note = Note.objects.filter(id=ibook).first()
             if iden == 1:
                 note.is_approved = 1
+                note.user.contri += 1
             else:
                 note.is_approved = -1
             note.save()
@@ -83,6 +109,7 @@ def note_approval(request):
         note = Note.objects.all()
         return render(request,'departments/note_approval.html',{'notes':note})
 
+@admin
 def misc_approval(request):
 
     if request.method == "POST":
@@ -94,6 +121,7 @@ def misc_approval(request):
             misc = MiscNote.objects.filter(id=ibook).first()
             if iden == 1:
                 misc.is_approved = 1
+                misc.user.contri += 1
             else:
                 misc.is_approved = -1
             misc.save()
@@ -103,6 +131,7 @@ def misc_approval(request):
         misc = MiscNote.objects.all()
         return render(request,'admin/misc_approval.html',{'miscs':misc})
 
+@admin
 def add_dept(request):
     msg = ""
     if request.method == 'POST':
@@ -122,6 +151,7 @@ def add_dept(request):
         form = AddDept()
     return render(request, 'admin/add_dept.html', { 'form': form , 'msg':msg})
 
+@no_student
 def add_course(request):
     msg = ""
     if request.method == 'POST':
@@ -142,6 +172,11 @@ def add_course(request):
         form = AddCourse()
     return render(request, 'departments/add_course.html', { 'form': form , 'msg':msg})
 
+@admin
 def admin_dashboard(request):
-    return render(request,'admin/dashboard.html')
+    bcount = Book.objects.filter(is_approved=1).count()
+    ncount = Note.objects.filter(is_approved=1).count()
+    vcount = CourseVideo.objects.count()
+    depts = Department.objects.all()
+    return render(request,'admin/dashboard.html',{'vcount':vcount , 'ncount':ncount ,'bcount':bcount , 'depts':depts})
 

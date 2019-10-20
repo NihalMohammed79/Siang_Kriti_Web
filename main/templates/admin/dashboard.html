@@ -45,8 +45,8 @@
     <div class="row py-5">
         <div class="col-sm-8">
             <h1 class="display-4 mb-3">{{request.user.first_name}} {{request.user.last_name}}</h1>
-                <p class="lead"><b>Total Videos</b>:&nbsp;&nbsp;&nbsp;&nbsp;23</p>
-                <p class="lead"><b>Total Books</b>:&nbsp;&nbsp;&nbsp;&nbsp;246</p>
+                <p class="lead"><b>Total Videos</b>:&nbsp;&nbsp;&nbsp;&nbsp;{{vcount}}</p>
+                <p class="lead"><b>Total Books</b>:&nbsp;&nbsp;&nbsp;&nbsp;{{bcount}}</p>
               <hr class="my-4">
             <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
         </div>
@@ -64,60 +64,15 @@
       </ol>
     </nav>
     <div class="row">
+      {%for dept in depts%}
         <div class="col-md-4">
             <div class="card d-flex">
                 <div class="card-body">
-                    <h3 class="card-title text-primary mb-4">Mechanical Engineering</h3>
-                    <h4 class="card-title mb-2">Video/Course Uploads: </h4>
-                    <h4 class="card-title mb-2">Notes Uploads: </h4>
+                    <h3 class="card-title text-primary mb-4">{{dept.name}}</h3>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card d-flex">
-                <div class="card-body">
-                    <h3 class="card-title text-primary mb-4">Mathematics and Computing</h3>
-                    <h4 class="card-title mb-2">Video/Course Uploads: </h4>
-                    <h4 class="card-title mb-2">Notes Uploads: </h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card d-flex">
-                <div class="card-body">
-                    <h3 class="card-title text-primary mb-4">Chemical Engineering</h3>
-                    <h4 class="card-title mb-2">Video/Course Uploads: </h4>
-                    <h4 class="card-title mb-2">Notes Uploads: </h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card d-flex">
-                <div class="card-body">
-                    <h3 class="card-title text-primary mb-4">Electrical and Electronics Engineering</h3>
-                    <h4 class="card-title mb-2">Video/Course Uploads: </h4>
-                    <h4 class="card-title mb-2">Notes Uploads: </h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card d-flex">
-                <div class="card-body">
-                    <h3 class="card-title text-primary mb-4">Electronics and Communication Engineering</h3>
-                    <h4 class="card-title mb-2">Video/Course Uploads: </h4>
-                    <h4 class="card-title mb-2">Notes Uploads: </h4>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card d-flex">
-                <div class="card-body">
-                    <h3 class="card-title text-primary mb-4">Chemical Science and Technology</h3>
-                    <h4 class="card-title mb-2">Video/Course Uploads: </h4>
-                    <h4 class="card-title mb-2">Notes Uploads: </h4>
-                </div>
-            </div>
-        </div>
+        {%endfor%}
     </div>
 </div>
 

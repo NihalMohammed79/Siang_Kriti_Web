@@ -15,20 +15,23 @@ from django.template.loader import render_to_string
 from django.db import connection
 import datetime
 
-@login_required
+@student
 def student_dashboard(request):
     return render(request,'students/dashboard.html')
 
+@login_required
 def student_courses(request):
     fil = CourseVideo.objects.all()
     n = Note.objects.all()
     return render(request, 'students/courses.html',{'videos':fil,'notes':n})
 
+@login_required
 def student_club_courses(request):
     fil = CourseVideo.objects.all()
     n = Note.objects.all()
     return render(request, 'students/club_courses.html',{'videos':fil,'notes':n})
 
+@login_required
 def student_book_upload(request):
     msg = ""
     if request.method == 'POST':
@@ -53,6 +56,7 @@ def student_book_upload(request):
         form = BooksUpload()
     return render(request, 'students/books_upload.html', { 'form': form , 'msg':msg})
 
+@login_required
 def student_note_upload(request):
     msg = ""
     departments = Department.objects.all()

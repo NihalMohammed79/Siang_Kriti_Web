@@ -51,6 +51,12 @@ def redirect_ac(request):
     else:
         if request.user.is_student:
             return redirect("/student")
+        if request.user.is_department:
+            return redirect("/department")
+        if request.user.is_department:
+            return redirect("/club")
+        if request.user.is_department:
+            return redirect("/admin")
 
 def get_courses(request):
     if request.method=="POST":
@@ -60,6 +66,7 @@ def get_courses(request):
         data = [course.as_dict() for course in courses]
         return JsonResponse(data,safe=False)
 
+@login_required
 def misc_upload(request):
     msg = ""
     if request.method == 'POST':

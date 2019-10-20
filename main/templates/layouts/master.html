@@ -54,6 +54,9 @@
                     {%if request.user.is_admin%}
                         {%include 'admin/sidebar.html'%}
                     {%endif%}
+                    {%if request.user.is_club%}
+                        {%include 'clubs/sidebar.html'%}
+                    {%endif%}
 
                 </ul>
             </div><!-- /.navbar-collapse -->
