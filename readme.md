@@ -44,3 +44,7 @@ This is the latest Online Learning Platform for the community of IIT Guwahati. S
 ## Bugs
 
 * The Icons for UI in the sidebar and navbar are not loading in Windows Operating System, but working on Ubuntu Operating System.
+* Profile picture is static for now.
+
+## Developed by
+* Team Siang
